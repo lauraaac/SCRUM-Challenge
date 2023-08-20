@@ -11,9 +11,29 @@ from rest_framework.decorators import api_view
 
 @api_view(['GET', 'POST', 'DELETE'])
 def getStocks(request):
-    return None
+
+    #JSON response for frontend chart testing
+    stocks = {
+    "stock_prices": [
+        { "date": '2023-08-17', "price": 100 },
+        { "date": '2023-08-18', "price": 105 },
+        { "date": '2023-08-19', "price": 110 },
+        ]
+    }
+    
+    return JsonResponse(stocks)
 
 
 @api_view(['GET', 'POST', 'DELETE'])
 def getCrypoCurrencies(request):
-    return None
+
+    #JSON response for frontend chart testing
+    cryptocurrencies = {
+    "stock_prices": [
+        { "date": '2023-08-17', "price": 80000 },
+        { "date": '2023-08-18', "price": 7000 },
+        { "date": '2023-08-19', "price": 10000 },
+        ]
+    }
+    
+    return JsonResponse(cryptocurrencies)
