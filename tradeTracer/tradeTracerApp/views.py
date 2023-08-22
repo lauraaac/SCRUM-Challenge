@@ -12,16 +12,13 @@ from rest_framework.decorators import api_view
 @api_view(['GET', 'POST', 'DELETE'])
 def getStocks(request):
 
-    #JSON response for frontend chart testing
-    stocks = {
-    "stock_prices": [
-        { "date": '2023-08-17', "price": 100 },
-        { "date": '2023-08-18', "price": 105 },
-        { "date": '2023-08-19', "price": 110 },
-        ]
-    }
-    
-    return JsonResponse(stocks)
+    if request.method == 'GET':
+        stocks = Stocks.objects.all()        
+        nameFilter = request.GET.get("name",None)
+        if nameFilter is not None:
+            stocks = stocks.filter(name=nameFilter)
+        stocksSerializer = StocksSerializer(stocks, many=True)
+    return JsonResponse(stocksSerializer.data, safe=False)
 
 
 @api_view(['GET', 'POST', 'DELETE'])

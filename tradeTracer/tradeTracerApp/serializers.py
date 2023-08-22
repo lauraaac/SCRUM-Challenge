@@ -3,7 +3,7 @@ from tradeTracerApp.models import Stocks, cryptoCurrencies
 
 class StocksSerializer(serializers.ModelSerializer):
  
-    class Stock:
+    class Meta:
         model = Stocks
         fields = ('id',
                   'name',
