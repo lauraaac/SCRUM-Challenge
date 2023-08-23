@@ -1,6 +1,7 @@
 <template>
   <div class="chart-container">
-    <div v-for="(stock, index) in stocks" :key="index" class="chart-wrapper">
+    <div v-for="(stockData, index) in stocks" :key="index" class="chart-wrapper">
+      <h2>{{ stockData[0].name }}</h2>
       <canvas :id="'canvas-' + index" class="chart-canvas"></canvas>
     </div>
   </div>
@@ -16,28 +17,29 @@ export default {
     };
   },
   mounted() {
-    this.fetchStockUrls([
-      'http://127.0.0.1:8000/stocks/',
-      'http://127.0.0.1:8000/crypoCurrencies/',
-      'http://127.0.0.1:8000/stocks/',
-      'http://127.0.0.1:8000/crypoCurrencies/',
-    ]);
+    const stockNames = ['Coca-Cola', 'Apple', 'Endava', 'Globant', 'IBM', 'Amazon', 'Meta', 'Tesla', 'Mercedes Benz'];
+    const baseUrl = 'http://127.0.0.1:8000/';
+
+    const urls = stockNames.map(name => `${baseUrl}stocks/?name=${name}`);
+
+    this.fetchStockUrls(urls);
   },
   methods: {
     fetchStockUrls(urls) {
       Promise.all(urls.map(url => fetch(url).then(response => response.json())))
-        .then(data_array => {
-          this.stocks = data_array;
+        .then(dataArray => {
+          this.stocks = dataArray;
 
           this.$nextTick(() => {
-            data_array.forEach((data, index) => {
+            dataArray.forEach((data, index) => {
               const canvas = document.getElementById('canvas-' + index);
               const ctx = canvas.getContext('2d');
 
               Chart.register(LineController, LinearScale, PointElement, LineElement);
 
-              const labels = data.stock_prices.map(stock => stock.date);
-              const prices = data.stock_prices.map(stock => stock.price);
+              const labels = data.map(stock => stock.date);
+              const prices = data.map(stock => parseFloat(stock.price));
+              const colors = ['#ed0109', '#fafafa', '#de411b', '#c0d732', '#406cac', '#febd69', '#0064e0', '#e82127', '#c2c5ca'];
 
               new Chart(ctx, {
                 type: 'line',
@@ -47,13 +49,21 @@ export default {
                     {
                       label: 'Stock price',
                       data: prices,
-                      borderColor: 'green',
+                      borderColor: colors[index % colors.length],
                       fill: true,
                     },
                   ],
                 },
                 options: {
                   responsive: false,
+                  plugins: {
+                    tooltip: {
+                      enabled: true,
+                      callbacks: {
+                        label: context => `Value: ${context.formattedValue}`,
+                      },
+                    },
+                  },
                 },
               });
             });
