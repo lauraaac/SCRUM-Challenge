@@ -3,7 +3,7 @@
     <v-container>
       <v-list>
         <v-list-item-title class="text-h4 mb-4">
-        Hi everyone, this is a little web page to get info about some stocks and cryptocurrencies. Hope you enjoy!<br><br>
+        Hi everyone, this is a little web page to get info about <br><br> some stocks and cryptocurrencies. <br><br> <br><br>Hope you enjoy!<br><br>
         </v-list-item-title>
         <v-list-item v-for="(item, index) in items" :key="item.id" class="mt-4">
           <v-list-item-content>
@@ -87,7 +87,7 @@ export default {
         },
         {
           id: 2,
-          name: 'Stocks by date',
+          name: 'Stocks by name and date ',
           description: 'Choose a stock in the boxes below and input dates in the following format: YYYY-MM-DD, if you wish, dates are optional.',
         },
         {
@@ -97,7 +97,7 @@ export default {
         },
         {
           id: 4,
-          name: 'Cryptos by date',
+          name: 'Cryptos by name and date',
           description: 'Choose a crypto in the box below and input dates in the following format: YYYY-MM-DD, if you wish, dates are optional.',
         },
       ],
