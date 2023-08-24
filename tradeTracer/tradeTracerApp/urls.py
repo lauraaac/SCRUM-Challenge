@@ -5,7 +5,7 @@ from tradeTracerApp import views
   
 urlpatterns = [
     path('stocks/', views.getStocks ),
-    path('crypoCurrencies/', views.getCrypoCurrencies),
+    path('cryptos/', views.getCryptoCurrencies),
 
 
 ]

@@ -37,7 +37,7 @@ def getStocks(request):
 
 
 @api_view(['GET', 'POST', 'DELETE'])
-def getCrypoCurrencies(request):
+def getCryptoCurrencies(request):
 
     if request.method == 'GET':
         criptoCur = Crypto_Currencies.objects.all().order_by("date")
