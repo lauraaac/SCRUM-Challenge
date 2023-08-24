@@ -1,9 +1,9 @@
 <template>
-  <div class="chart-container">
-    <div v-for="(cryptoData, index) in cryptos" :key="index" class="chart-wrapper">
-      <h2>{{ cryptoData[0].name }}</h2>
-      <canvas :id="'canvas-' + index" class="chart-canvas"></canvas>
-    </div>
+    <div class="chart-container">
+      <div v-for="(cryptoData, index) in cryptos" :key="index" class="chart-wrapper">
+        <h2>{{ cryptoData[0].name }}</h2>
+        <canvas :id="'canvas-' + index" class="chart-canvas"></canvas>
+      </div>
   </div>
 </template>
 
@@ -17,7 +17,7 @@ export default {
     };
   },
   mounted() {
-    const cryptoNames = ['Bitcoin', 'Ethereum', 'XRP', 'Tether USDt', 'BNB', 'USD Coin', 'Cardano', 'Dogecoin', 'Solana'];
+    const cryptoNames = ['Bitcoin', 'Ethereum', 'XRP', 'BNB', 'Cardano', 'Dogecoin', 'Solana'];
     //const cryptoNames = ['Bitcoin', 'Ethereum', 'XRP', 'BNB', 'Cardano'];
     const baseUrl = 'http://127.0.0.1:8000/';
 
@@ -40,7 +40,7 @@ export default {
 
               const labels = data.map(crypto => crypto.date);
               const prices = data.map(crypto => parseFloat(crypto.price));
-              const colors = ['#f7931a', '#1d1e1e', '#22282e', '#019090', '#f0b809', '#2774c9', '#0336b3', '#bca133', '#2eeccb'];
+              const colors = ['#f7931a', '#1d1e1e', '#22282e', '#f0b809', '#0336b3', '#bca133', '#2eeccb'];
 
               new Chart(ctx, {
                 type: 'line',

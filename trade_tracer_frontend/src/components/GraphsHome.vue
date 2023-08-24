@@ -90,7 +90,7 @@ export default {
         {
           id: 3,
           name: 'All cryptocurrencies',
-          description: 'Nine cryptocurrencies to view.',
+          description: 'Seven cryptocurrencies to view.',
         },
         {
           id: 4,
@@ -113,9 +113,7 @@ export default {
         'Bitcoin',
         'Ethereum',
         'XRP',
-        'Tether USDt',
         'BNB',
-        'USD Coin',
         'Cardano',
         'Dogecoin',
         'Solana',
