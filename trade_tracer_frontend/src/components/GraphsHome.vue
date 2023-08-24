@@ -2,11 +2,14 @@
   <v-app>
     <v-container>
       <v-list>
-        <v-list-item v-for="(item, index) in items" :key="item.id">
+        <v-list-item-title class="text-h4 mb-4">
+        Hi everyone, this is a little web page to get info about some stocks and cryptocurrencies. Hope you enjoy!<br><br>
+        </v-list-item-title>
+        <v-list-item v-for="(item, index) in items" :key="item.id" class="mt-4">
           <v-list-item-content>
-            <v-list-item-title>{{ item.name }}</v-list-item-title>
+            <v-list-item-title class="mt-4">{{ item.name }}</v-list-item-title>
             <v-list-item-subtitle>{{ item.description }}</v-list-item-subtitle>
-            <v-list-item v-if="index === 0">
+            <v-list-item v-if="index === 0" class="mt-4">
               <v-row justify="center">
                 <v-col cols="12">
                   <v-btn 
@@ -35,7 +38,7 @@
                 </v-col>
               </v-row>
             </v-list-item>
-            <v-list-item v-if="index === 2">
+            <v-list-item v-if="index === 2" class="mt-4">
               <v-row justify="center">
                 <v-col cols="12">
                   <v-btn 
